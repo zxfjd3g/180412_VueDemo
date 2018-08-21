@@ -2,8 +2,8 @@
   <div class="todo-container">
     <div class="todo-wrap">
       <todo-header :addTodo="addTodo"/>
-      <List :todos="todos"/>
-      <TodoFooter/>
+      <List :todos="todos" :deleteTodo="deleteTodo"/>
+      <TodoFooter :todos="todos" :checkAllTodos="checkAllTodos" :clearCompletedTodos="clearCompletedTodos"/>
     </div>
   </div>
 </template>
@@ -24,8 +24,26 @@
     },
 
     methods: {
+      // 添加todo
       addTodo (todo) {
         this.todos.unshift(todo)
+      },
+
+      // 删除指定下标的todo
+      deleteTodo (index) {
+        this.todos.splice(index, 1)
+      },
+
+      // 对所有todo进行全选或全不选
+      checkAllTodos (isCheck) {
+        this.todos.forEach(todo => {
+          todo.complete = isCheck
+        })
+      },
+
+      // 清除已完成的todo
+      clearCompletedTodos () {
+        this.todos = this.todos.filter(todo => !todo.complete)
       }
     },
 

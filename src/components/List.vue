@@ -1,6 +1,7 @@
 <template>
   <ul class="todo-main">
-    <Item v-for="(todo, index) in todos" :key="index" :todo="todo"/>
+    <Item v-for="(todo, index) in todos" :key="index"
+          :todo="todo" :deleteTodo="deleteTodo" :index="index"/>
   </ul>
 </template>
 <script>
@@ -9,7 +10,7 @@
   export default {
     // 组件对象可以理解为一个小的vm对象, 也就是this
     // 接收的props属性就会自动成功组件对象的属性(只读)
-    props: ['todos'], // 指定了属性名
+    props: ['todos', 'deleteTodo'], // 指定了属性名
 
     components: {
       Item
