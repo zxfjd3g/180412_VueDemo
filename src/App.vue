@@ -4,7 +4,11 @@
       <!--绑定自定义事件监视-->
       <todo-header @addTodo="addTodo"/>
       <List :todos="todos"/>
-      <TodoFooter :todos="todos" :checkAllTodos="checkAllTodos" :clearCompletedTodos="clearCompletedTodos"/>
+      <TodoFooter :todos="todos" :checkAllTodos="checkAllTodos" :clearCompletedTodos="clearCompletedTodos">
+        <!--<input type="checkbox" v-model="checkAll" slot="left"/>-->
+        <span slot="size">已完成{{completeSize}} / 全部{{todos.length}}</span>
+        <button class="btn btn-danger" slot="right" v-show="completeSize" @click="clearCompleted">清除已完成任务</button>
+      </TodoFooter>
     </div>
   </div>
 </template>
@@ -20,6 +24,23 @@
     data() {
       return {
         todos: []
+      }
+    },
+
+    computed: {
+      // 计算得到完成的数量
+      completeSize () {
+        return this.todos.reduce((preTotal, todo) => preTotal + (todo.complete ? 1 : 0), 0)
+      },
+
+      checkAll: {
+        get () {
+          return this.todos.length === this.completeSize && this.completeSize>0
+        },
+        // 点击checkbox时调用
+        set (value) {// value代表checkbox当前是否勾选
+          this.checkAllTodos(value)
+        }
       }
     },
 
@@ -73,6 +94,12 @@
       // 清除已完成的todo
       clearCompletedTodos () {
         this.todos = this.todos.filter(todo => !todo.complete)
+      },
+
+      clearCompleted () {
+        if(confirm('确定要删除吗?')) {
+          this.clearCompletedTodos()
+        }
       }
     },
 
