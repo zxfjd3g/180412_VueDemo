@@ -1,16 +1,13 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <!--绑定自定义事件监视-->
-      <todo-header @addTodo="addTodo"/>
-      <List :todos="todos"/>
+      <todo-header :addTodo="addTodo"/>
+      <List :todos="todos" :deleteTodo="deleteTodo"/>
       <TodoFooter :todos="todos" :checkAllTodos="checkAllTodos" :clearCompletedTodos="clearCompletedTodos"/>
     </div>
   </div>
 </template>
 <script>
-  import PubSub from 'pubsub-js'
-
   import Header from './components/Header.vue'
   import List from './components/List.vue'
   import Footer from './components/Footer.vue'
@@ -29,13 +26,6 @@
         // 如果没有保存过数据, 读取的结果希望是[]
         this.todos = storageUtil.getTodos()
       }, 1000)
-
-      // 订阅消息(deleteTodo)
-      PubSub.subscribe('deleteTodo', (msg, index) => {
-        this.deleteTodo(index)
-      })
-
-      // PubSub.subscribe('deleteTodo', this.deleteTodo)  // 不可以
     },
 
     watch: {

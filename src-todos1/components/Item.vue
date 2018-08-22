@@ -4,14 +4,14 @@
       <input type="checkbox" v-model="todo.complete"/>
       <span>{{todo.title}}</span>
     </label>
-    <button class="btn btn-danger" v-show="isShow" @click="deleteTodo">删除</button>
+    <button class="btn btn-danger" v-show="isShow" @click="deleteTodo(index)">删除</button>
   </li>
 </template>
 <script>
-  import PubSub from 'pubsub-js'
   export default {
     props: { // 指定接收属性的属性名及属性值类型
       todo: Object,
+      deleteTodo: Function,
       index: Number
     },
 
@@ -31,11 +31,6 @@
           this.bgColor = '#ffffff'
           this.isShow = false
         }
-      },
-
-      deleteTodo () {
-        // 发布消息(deleteTodo)
-        PubSub.publish('deleteTodo', this.index)
       }
     }
   }

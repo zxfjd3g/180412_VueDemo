@@ -6,10 +6,10 @@
     3). 开发环境运行:
         cd VueDemo
         npm install
-        npm run dev
+        npm run dev / npm start
     4). 生产环境打包发布
         npm run build
-        npm install -g serve
+        npm install -g serve(静态服务器)
         serve dist
         http://localhost:5000
 
@@ -26,9 +26,9 @@
         <script>
             export default {
     		 props: []/{}
-              data(){},
+             data(){},
     		 computed: {}
-              methods: {},
+             methods: {},
     		  
     		  watch: {}
     		  filters: {}
@@ -39,11 +39,11 @@
         <style>
         </style>
     2). 组件化编码的基本流程
-    	1). 拆分界面, 抽取组件
-    	2). 编写静态组件
-    	3). 编写动态组件
-        	初始化数据, 动态显示初始化界面
-        	实现与用户交互功能
+    	1). 拆分组件
+    	2). 静态组件
+    	3). 动态组件
+        	动态显示初始化数据
+        	交互
     3). 组件通信的5种方式
     	props
     	vue的自定义事件
