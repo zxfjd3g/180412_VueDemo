@@ -19,12 +19,13 @@
       <div class="col-xs-6">
         <div class="panel">
           <div class="panel-body">
-            <!--显示当前路由组件-->
-            <router-view/>
+            <keep-alive>
+              <!--显示当前路由组件-->
+              <router-view msg="abc"/><!-- msg会传递给它管理的路由组件-->
+            </keep-alive>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
