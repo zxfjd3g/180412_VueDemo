@@ -3,8 +3,11 @@
     <ul>
       <li v-for="(m, index) in messages" :key="index">
         <router-link :to="`/home/message/detail/${m.id}`">{{m.title}}</router-link>
+        <button @click="pushShow(m.id)">push查看</button>
+        <button @click="replaceShow(m.id)">replace查看</button>
       </li>
     </ul>
+    <button @click="$router.back()">返回</button>
     <router-view/>
   </div>
 </template>
@@ -27,6 +30,19 @@
         ]
         this.messages = messages
       }, 1000)
+    },
+
+    methods: {
+      pushShow (id) {
+        console.log(this)
+        const path = '/home/message/detail/' + id
+        this.$router.push(path)
+      },
+
+      replaceShow (id) {
+        const path = '/home/message/detail/' + id
+        this.$router.replace(path)
+      }
     }
   }
 </script>

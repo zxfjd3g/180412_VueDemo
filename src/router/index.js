@@ -51,3 +51,16 @@ export default new VueRouter({ // 配置对象
     }
   ]
 })
+
+
+/*
+vue-router提供了哪些API
+ 1个函数: VueRouter
+ 2个对象:
+    $route: 代表当前路径相关信息的集合对象(path/params/query/meta)
+    $router: 路由器对象(包含多个路由跳转的方法)
+ 3个组件
+    router-link
+    router-view
+    keep-alive
+*/

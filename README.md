@@ -142,7 +142,7 @@
             }
          ]
     5). 向路由组件传递数据
-        params: <router-link to="/home/news/abc/123">
+        params参数: <router-link to="/home/news/abc/123">    路由的path="/home/news/:xxx/:yyy"
         props: <router-view msg='abc'>
     6). 缓存路由组件
         <keep-alive>
